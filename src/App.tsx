@@ -4,6 +4,7 @@ import { Logo } from './components/Logo'
 
 import './styles/theme.css'
 import './styles/global.css'
+
 import { CountDown } from './components/CountDown'
 import { DefaultInput } from './components/DefaultInput'
 import { Cycles } from './components/Cycles'
@@ -12,7 +13,7 @@ import { PlayCircleIcon } from 'lucide-react'
 import { Footer } from './components/Footer'
 
 export function App() {
-    return (
+       return (
         <>
             <Container>
                 <Logo/>
