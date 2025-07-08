@@ -41,24 +41,20 @@ export function MainForm() {
     };
     
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask});
+    
+    const worker = new Worker(
+      new URL('../../workers/timerWorker.js', import.meta.url)
+    );
+
+    worker.postMessage('Olá mundo!')
+    
+    worker.onmessage = function (event) {
+      console.log('Principal recebeu:', event.data);
+    }
   }
 
   function handleInterruptTask () {
-   /*
-    setState(prevState => {
-      return {
-        ...prevState,
-        activeTask: null,
-        secondsRemaining: 0,
-        formattedSecondsRemaining: '00:00',
-        tasks: prevState.tasks.map(task => {
-          if (prevState.activeTask && prevState.activeTask.id === task.id) {
-            return {...task, interruptDate: Date.now()};
-          }
-          return task;
-        })
-      };
-    });*/
+    dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }
 
   return (
