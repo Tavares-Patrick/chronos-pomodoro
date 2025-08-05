@@ -1,10 +1,12 @@
+import type { TaskStateModel } from "../models/TaskStateModel";
+
 let instance: TimerWorkerManager | null = null
 
 export class TimerWorkerManager {
   private worker: Worker;
 
   private constructor () {
-    this.worker = new Worker(new URL('../timerWorker.js', import.meta.url));
+    this.worker = new Worker("/workers/timerWorker.js");
   }
 
   static getInstance() {
@@ -15,9 +17,14 @@ export class TimerWorkerManager {
     return instance
   }
 
-  postMessage(message: any) {
-    this.worker.postMessage(message);
+  postMessage(message: TaskStateModel) {
+  if (!message.activeTask || !message.secondsRemaining) {
+    console.warn("Não foi enviado activeTask ou secondsRemaining ao worker.");
+    return;
   }
+
+  this.worker.postMessage(message);
+}
 
   onmessage(cb: (e: MessageEvent) => void) {
     this.worker.onmessage = cb;

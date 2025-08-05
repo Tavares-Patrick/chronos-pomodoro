@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/workers", "src/workers/timerWoker.js"]
+  "include": ["src", "src/workers", "public/workers/timerWorker.js"]
 }
