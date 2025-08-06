@@ -3,11 +3,14 @@ import { TaskContextProvider } from './components/contexts/TaskContexts/TaskCont
 
 import './styles/theme.css'
 import './styles/global.css'
+import { MessagesContainers } from './components/MessagesContainers'
 
 export function App() {
   return (
     <TaskContextProvider>
-      <Home />
+      <MessagesContainers>
+        <Home />
+      </MessagesContainers>
     </TaskContextProvider>
   )
 }
