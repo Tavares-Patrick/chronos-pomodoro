@@ -4,7 +4,7 @@ import { DefaultButton } from "../../components/DefaultButton";
 import { DefaultInput } from "../../components/DefaultInput";
 import { Heading } from "../../components/Heading";
 import { MainTemplates } from "../../templates/MainTemplates";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTaskContext } from "../../components/contexts/TaskContexts/useTaskContext";
 import { showMessage } from "../../adpters/showMessage";
 import { TaskActionTypes } from "../../components/contexts/TaskContexts/taskActions";
@@ -14,6 +14,10 @@ export function Settings() {
   const workTimeInput = useRef<HTMLInputElement>(null);
   const shortBreakTimeInput = useRef<HTMLInputElement>(null);
   const LongBreakTimeInput = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+        document.title = 'Configurações - Chronos Pomodoro';
+      }, [])
 
   function handleSaveSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
